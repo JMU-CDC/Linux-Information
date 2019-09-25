@@ -23,3 +23,11 @@ A great linux command that will give you insight into current network informatio
 * **systemctl status**: shows the process tree, great for finding extra bash sessions that shouldn't be there
 * **systemctl start 'service'**: start a service, for example mysql
 * **systemctl stop 'service'**: stop a service
+
+## Random Helpful Commands
+* **watch -n 'seconds' 'command'**: repeats a commans every n seconds
+* **who**: show current users who are logged in (great with watch)
+* **last**: shows history of last users who logged in
+* **ps faux**: another proccess tree view
+* **apt-get update**: update the services on your machine
+* **ls -lrb**: list files by the last time they were accessed 
