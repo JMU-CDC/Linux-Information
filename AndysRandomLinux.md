@@ -1,5 +1,13 @@
 # Andy's Random Linux Notes
 
+## Table of Contents
+
+1. [Users and Groups](#users-and-groups)
+2. [Processes and Ports](#processes-and-ports)
+    1. [netstat](#netstat)
+    2. [A few Systemd commands](#a-few-systemd-commands)
+3. [Random Helpful Commands](#random-helpful-commands)
+       
 ## Users and Groups
 When inteacting with user acounts on Linux you will need sudo privilages to make any changes. 
 * Show all users: **cat /etc/passwd**
@@ -10,7 +18,7 @@ When inteacting with user acounts on Linux you will need sudo privilages to make
 * Remove a user from a group: **gpasswd -d 'user' 'group'**
 * To change a users Password: **passwd 'name'**
 
-## Proccesses and Ports
+## Processes and Ports
 When defending a linux machine it is important to know what processes and ports you have open, and how to start and stop them if required
 
 ### netstat
