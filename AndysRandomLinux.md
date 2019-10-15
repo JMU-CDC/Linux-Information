@@ -108,8 +108,8 @@ and will ban users for a certain time after a certain number of failed SSH attem
 * `ps faux`: Another process tree view.
 * `apt-get` calls typically require root permissions:
   * `apt-get update`: Update the `apt` package lists to their latest versions.
-  * `apt-get upgrade`: Upgrade your packages to the latest version, but not change
-what packages are installed.
+  * `apt-get upgrade`: Upgrade your packages to the latest version, but do not
+change what packages are installed.
   * `apt-get dist-upgrade`: Upgrade your packages to the latest version, including
 installing or removing packages as needed to complete the upgrade.
 * `ls -ltu`: List files by the last time they were accessed (most recent first).
