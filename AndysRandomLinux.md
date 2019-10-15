@@ -9,7 +9,7 @@
 3. [iptables](#iptables)
     1. [Important Commands](#important-commands)
     2. [Some Simple Rules](#some-simple-rules)
-    3. [Andy<s Ruleset](#andy's-ruleset)
+    3. [Andy's Ruleset](#andys-ruleset)
 4. [Random Helpful Commands](#random-helpful-commands)
 
 ## Users and Groups
