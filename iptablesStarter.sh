@@ -13,6 +13,6 @@ sudo iptables -A INPUT -j DROP
 sudo iptables -A OUTPUT -i lo -j ACCEPT
 sudo iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT
 sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
-sudo iptables -A INPUT -j DROP
+sudo iptables -A OUTPUT -j DROP
 
 sudo iptables -L
