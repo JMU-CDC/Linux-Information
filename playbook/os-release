@@ -1,0 +1,10 @@
+NAME="Muuuubuntu"
+VERSION="18.10.1 LTS (Chrisus Friggenus)"
+ID=muuuuuubuntu
+ID_LIKE=debianish...likeitIguess
+PRETTY_NAME="Ubuntu 18.10.1 LTS"
+VERSION_ID="18.04"
+HOME_URL="http://www.muuuuuubuntu.com/"
+SUPPORT_URL="http://help......yeah youre not getting help"
+BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
+UBUNTU_CODENAME=chrisus
