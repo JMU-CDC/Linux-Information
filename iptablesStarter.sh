@@ -2,25 +2,53 @@
 
 #Set up some standard iptables rules
 #Run as root
+# UNCOMMENT FOR YOUR BOX
 
-sudo iptables -A INPUT -i lo -j ACCEPT
-sudo iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
-sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-sudo iptables -A INPUT -p tcp --dport 53 -j ACCEPT
-sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-sudo iptables -A INPUT -p icmp --icmp-type 8 -s 0/0 -d 127.0.0.1 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
-sudo iptables -A INPUT -p icmp --icmp-type 0 -s 0/0 -d 127.0.0.1 -m state --state ESTABLISHED,RELATED -j ACCEPT
+# Rules for all boxes
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --dport 53 -j ACCEPT
+
+# AMAZON/SUSE
+#iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 3000 -j ACCEPT
+
+# Ubuntu 18 - linwks
+#iptables -A INPUT -p tcp --dport 5900 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 5901 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 5902 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 5903 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 5904 -j ACCEPT
+
+# UBUNTU 20 - prod - docker one - might not work be careful
+#iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 8888 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 8081 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 2375 -j ACCEPT
+
+# RHEL 8
+#iptables -A INPUT -p tcp --dport 2049 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 21 -j ACCEPT
+
+
+iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type 0 -j ACCEPT
 #sudo iptables -A INPUT -p tcp --syn --dport 22 -m connlimit --connlimit-above 3 -j REJECT
 #sudo iptables -A INPUT -p tcp --dport 80 -m limit --limit 20/s --limit-burst 200 -j ACCEPT
-sudo iptables -I INPUT 1 -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
-sudo iptables -I INPUT 2 -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --update --seconds 600 --hitcount 5 -j DROP
-sudo iptables -A INPUT -j DROP
+iptables -I INPUT 1 -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
+iptables -I INPUT 2 -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --update --seconds 600 --hitcount 5 -j DROP
 
-#sudo iptables -A OUTPUT -i lo -j ACCEPT
-#sudo iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT
-#sudo iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
-#sudo iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
-#sudo iptables -A OUTPUT -j DROP
+# DROP ALL
+iptables -A INPUT -j DROP
 
-sudo iptables -L
+iptables -L
+
+# FAILSAFE IN CASE IT DOESNT WORK ON REMOTE BOX
+
+sleep 30
+
+iptables -F
+
+
