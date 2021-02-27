@@ -28,6 +28,8 @@ iptables -A INPUT -p tcp --dport 53 -j ACCEPT
 #iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 #iptables -A INPUT -p tcp --dport 8081 -j ACCEPT
 #iptables -A INPUT -p tcp --dport 2375 -j ACCEPT
+#iptables -A INPUT -s 192.168.23.12 -j ACCEPT
+#iptables -A INPUT -s 192.168.23.80 -j ACCEPT
 
 # RHEL 8
 #iptables -A INPUT -p tcp --dport 2049 -j ACCEPT
