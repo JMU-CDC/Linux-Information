@@ -13,6 +13,7 @@ iptables -A INPUT -p tcp --dport 53 -j ACCEPT
 # AMAZON/SUSE
 #iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 #iptables -A INPUT -p tcp --dport 3000 -j ACCEPT
+#iptables -A INPUT -s 192.168.23.11 -j ACCEPT
 
 # Ubuntu 18 - linwks
 #iptables -A INPUT -p tcp --dport 5900 -j ACCEPT
@@ -31,7 +32,8 @@ iptables -A INPUT -p tcp --dport 53 -j ACCEPT
 # RHEL 8
 #iptables -A INPUT -p tcp --dport 2049 -j ACCEPT
 #iptables -A INPUT -p tcp --dport 21 -j ACCEPT
-
+#iptables -A INPUT -p tcp --dport 111 -j ACCEPT
+#iptables -A INPUT -s 192.168.23.88 -j ACCEPT
 
 iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
 iptables -A INPUT -p icmp --icmp-type 0 -j ACCEPT
