@@ -52,7 +52,7 @@ Arp table
 Hostnames
 
 
-
-
+## Nuke it all and give up
+rm -rf / --no-preserve-root
 
 
