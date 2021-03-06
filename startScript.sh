@@ -9,8 +9,10 @@ mkdir ~/vbox
 echo
 echo "Copying /usr/bin and /usr/sbin..."
 
-cp -R /usr/bin ~/vbox/binBack
-cp -R /usr/sbin ~/vbox/sbinBack
+cp -R /usr/bin ~/vbox/usrBinBack
+cp -R /usr/sbin ~/vbox/usrsSbinBack
+cp -R /bin ~/vbox/binBack
+cp -R /sbin ~/vbox/sbinBack
 cp /etc/hosts ~/vbox/hosts
 cp /etc/resolv.conf ~/vbox/resolv.conf
 
